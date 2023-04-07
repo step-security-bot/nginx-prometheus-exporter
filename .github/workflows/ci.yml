@@ -23,6 +23,9 @@ on:
 env:
   DOCKER_PLATFORMS: "linux/arm,linux/arm64,linux/amd64,linux/ppc64le,linux/s390x,linux/mips64le,linux/386"
 
+permissions:
+  contents: read
+
 jobs:
 
   unit-tests:
@@ -41,6 +44,9 @@ jobs:
         run: make test
 
   build-docker:
+    permissions:
+      contents: write  # for release-drafter/release-drafter to create a github release
+      pull-requests: write  # for release-drafter/release-drafter to add label to PR
     name: Build Docker Image
     runs-on: ubuntu-22.04
     needs: unit-tests
