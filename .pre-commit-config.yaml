@@ -40,3 +40,7 @@ repos:
 
 ci:
   skip: [golang-diff, golangci-lint]
+- repo: https://github.com/gitleaks/gitleaks
+  rev: v8.16.3
+  hooks:
+  - id: gitleaks
